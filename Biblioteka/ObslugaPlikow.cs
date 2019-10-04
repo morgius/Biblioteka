@@ -12,8 +12,11 @@ namespace Biblioteka
         
       
         public abstract List<Ksiazka> Read(string path);
-
         public abstract void Write(List<Ksiazka> lista);
+        public abstract void Update(Ksiazka ksiazka);
+        public abstract void Remove(int id);
+        public abstract void Add(Ksiazka ksiazka);
+        
         public void Updatowanie(Ksiazka ksiazka, List<Ksiazka> listaKsiazek)
         {
             var updatowanaKsiazka = listaKsiazek.FirstOrDefault(x => x.Id == ksiazka.Id);
@@ -29,11 +32,6 @@ namespace Biblioteka
             {
                 listaKsiazek.Remove(usuwanaKsiazka);
                 listaKsiazek.Sort();
-            }
-            else
-            {
-
-                Console.WriteLine("Nie ma takiej książki w bibliotece.");
             }
             Write(listaKsiazek);
         }

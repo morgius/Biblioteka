@@ -60,10 +60,12 @@ namespace Biblioteka
             {
                 return $"Książka jest wypożyczona przez {UserName}";
             }
-            else
+            else if (Zarezerwowany)
             {
                 return $"Książka jest zarezerwowana przez {UserName}";
             }
+            else
+                return "";
         }
     }
 }

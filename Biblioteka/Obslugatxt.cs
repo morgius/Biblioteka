@@ -16,28 +16,27 @@ namespace Biblioteka
         }
         public override void Write(List<Ksiazka> lista)
         {
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+            File.WriteAllText(path,string.Empty);
+            
             for (int i = 0; i < lista.Count; i++)
             {
                 string temp = KsiazkaToTxt(lista[i]);
                 File.AppendAllText(path, temp + Environment.NewLine);
             }
         }
-        public void Update(Ksiazka ksiazka)
+        public override void Update(Ksiazka ksiazka)
         {
             var listaKsiazek = File.ReadAllLines(path).Select(TxtToKsiazka).ToList();
             Updatowanie(ksiazka, listaKsiazek);
+            
         }
-        public void Add(Ksiazka ksiazka)
+        public override void Add(Ksiazka ksiazka)
         {
             var listaKsiazek = File.ReadAllLines(path).Select(TxtToKsiazka).ToList();
             Dodawanie(ksiazka, listaKsiazek);
         }
 
-        public void Remove(int id)
+        public override void Remove(int id)
         {
             var listaKsiazek = File.ReadAllLines(path).Select(TxtToKsiazka).ToList();
             Usuwanie(id, listaKsiazek);
